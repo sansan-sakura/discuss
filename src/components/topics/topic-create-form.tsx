@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Input,
@@ -7,6 +8,7 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import * as actions from "@/actions";
+import { useFormState } from "react-dom";
 
 export const TopicCreateForm = () => {
   return (
@@ -18,8 +20,9 @@ export const TopicCreateForm = () => {
         <form action={actions.createTopic}>
           <div className="flex flex-col gap-4 p-4 w-80">
             <h3 className="text-lg">Create a Topic</h3>
-            <Input label="Name" labelPlacement="outside" placeholder="Name" />
+            <Input label="Name" labelPlacement="outside" placeholder="Name" name="name" />
             <Textarea
+              name="description"
               label="Description"
               labelPlacement="outside"
               placeholder="Describe your topic"
