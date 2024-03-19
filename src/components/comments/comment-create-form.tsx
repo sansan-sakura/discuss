@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { Textarea, Button } from "@nextui-org/react";
-import FormButton from "@/components/common/form-button";
+import { FormButton } from "@/components/common/form-button";
 import * as actions from "@/actions";
 
 interface CommentCreateFormProps {
@@ -12,17 +12,12 @@ interface CommentCreateFormProps {
   startOpen?: boolean;
 }
 
-export default function CommentCreateForm({
-  postId,
-  parentId,
-  startOpen,
-}: CommentCreateFormProps) {
+export default function CommentCreateForm({ postId, parentId, startOpen }: CommentCreateFormProps) {
   const [open, setOpen] = useState(startOpen);
   const ref = useRef<HTMLFormElement | null>(null);
-  const [formState, action] = useFormState(
-    actions.createComment.bind(null, { postId, parentId }),
-    { errors: {} }
-  );
+  const [formState, action] = useFormState(actions.createComment.bind(null, { postId, parentId }), {
+    errors: {},
+  });
 
   useEffect(() => {
     if (formState.success) {
